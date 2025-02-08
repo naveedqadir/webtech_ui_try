@@ -20,20 +20,22 @@ export function Welcome() {
       <section ref={targetRef} className="relative min-h-screen flex items-center">
         <div className="absolute inset-0 bg-[#030014]">
           <Canvas className="w-full h-full">
-            <OrbitControls enableZoom={false} />
-            <ambientLight intensity={0.5} />
+            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+            <ambientLight intensity={0.8} />
             <directionalLight 
               position={[10, 10, 10]} 
-              intensity={1} 
+              intensity={1.5} 
               castShadow
             />
             <directionalLight position={[2, 5, 2]} />
-            <Sphere args={[1, 100, 200]} scale={2.5}>
+            <Sphere args={[1, 100, 200]} scale={2.8}>
               <meshStandardMaterial
-                color="#ffffff"
+                color="#4a9eff"
                 wireframe
                 transparent
-                opacity={0.1}
+                opacity={0.15}
+                emissive="#4a9eff"
+                emissiveIntensity={0.4}
               />
             </Sphere>
           </Canvas>
@@ -87,20 +89,25 @@ export function Welcome() {
       </section>
 
       {/* Features Grid - Now with 3D cards */}
-      <section className="py-32 bg-[#030014]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-32 bg-[#030014] relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030014] via-purple-900/5 to-[#030014] opacity-40" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
-                whileHover={{ scale: 1.05, rotateY: 5 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                }}
                 key={feature.title}
-                className="relative p-8 rounded-2xl overflow-hidden"
+                className="relative p-8 rounded-2xl backdrop-blur-sm"
               >
                 {/* Removed blur effect from background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-white/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-white/10 rounded-2xl" />
                 <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 mb-6 group-hover:scale-110 transition-transform">
                   {feature.icon}
                 </div>

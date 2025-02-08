@@ -14,9 +14,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-[#030014] overflow-hidden">
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#030014]/80 backdrop-blur-xl' : 'bg-transparent'
-      }`}>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled ? 'bg-[#030014]/90 backdrop-blur-xl shadow-lg' : 'bg-transparent'
+        }`}
+      >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-24">
             <motion.div
@@ -87,12 +91,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
             ))}
           </div>
         </div>
-      </nav>
-      <main className="pt-24">
+      </motion.nav>
+
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="pt-24"
+      >
         {children}
-      </main>
+      </motion.main>
       
-      <footer className="bg-[#030014] backdrop-blur-sm mt-20">
+      <footer className="bg-[#030014]/80 backdrop-blur-lg mt-20 border-t border-white/10">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="col-span-2 md:col-span-1">
