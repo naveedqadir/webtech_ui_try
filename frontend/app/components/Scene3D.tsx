@@ -111,25 +111,84 @@ export function GradientSphere() {
       {/* Enhanced sun glow effect */}
       <group position={[5, 3, 5]}>
         {/* Bright core */}
-        <pointLight intensity={2} distance={20} decay={2} color="#FFFFFF" />
+        <pointLight intensity={2.5} distance={25} decay={2} color="#FFFFFF" />
         
-        {/* Large glow */}
-        <mesh>
-          <sphereGeometry args={[0.4, 32, 32]} />
-          <meshBasicMaterial color="#FFF9C4" transparent opacity={0.8} />
-        </mesh>
-        
-        {/* Small bright core */}
+        {/* Sun core with animation */}
         <mesh>
           <sphereGeometry args={[0.2, 32, 32]} />
-          <meshBasicMaterial color="#FFFFFF" />
+          <MeshWobbleMaterial 
+            color="#FFFFFF" 
+            factor={0.15}
+            speed={0.5}
+            emissive="#FFFFFF"
+            emissiveIntensity={1.2}
+          />
+        </mesh>
+        
+        {/* Inner corona */}
+        <mesh>
+          <sphereGeometry args={[0.4, 32, 32]} />
+          <MeshWobbleMaterial 
+            color="#FFF9C4" 
+            factor={0.2}
+            speed={0.3}
+            transparent 
+            opacity={0.8} 
+            emissive="#FFF176"
+            emissiveIntensity={0.8}
+          />
+        </mesh>
+        
+        {/* Middle corona layer */}
+        <mesh>
+          <sphereGeometry args={[0.7, 28, 28]} />
+          <MeshWobbleMaterial
+            color="#FFEE58"
+            factor={0.3}
+            speed={0.2}
+            transparent
+            opacity={0.5}
+            emissive="#FFD54F"
+            emissiveIntensity={0.6}
+          />
         </mesh>
         
         {/* Outer glow */}
         <mesh>
-          <sphereGeometry args={[0.8, 24, 24]} />
-          <meshBasicMaterial color="#FFECB3" transparent opacity={0.3} />
+          <sphereGeometry args={[1.0, 24, 24]} />
+          <MeshWobbleMaterial
+            color="#FFCA28"
+            factor={0.4}
+            speed={0.15}
+            transparent
+            opacity={0.3}
+            emissive="#FFB300"
+            emissiveIntensity={0.4}
+          />
         </mesh>
+        
+        {/* Distant halo effect */}
+        <mesh>
+          <sphereGeometry args={[1.5, 20, 20]} />
+          <meshBasicMaterial
+            color="#FFE082"
+            transparent
+            opacity={0.15}
+            side={THREE.BackSide}
+          />
+        </mesh>
+        
+        {/* Lens flare effect */}
+        <SpotLight
+          distance={15}
+          angle={0.5}
+          attenuation={5}
+          anglePower={5}
+          intensity={2}
+          color="#FFF8E1"
+          position={[0, 0, 0]}
+          target-position={[-5, -3, -5]}
+        />
       </group>
       
       {/* Space background light enhancement */}
