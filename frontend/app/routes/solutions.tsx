@@ -1,7 +1,7 @@
 import { Layout } from "../components/Layout";
 import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import { AdvancedShape } from "../components/Scene3D";
 
 export default function Solutions() {
@@ -13,8 +13,9 @@ export default function Solutions() {
             <ambientLight intensity={0.5} />
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
             <pointLight position={[-10, -10, -10]} />
+            <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
             <OrbitControls enableZoom={false} />
-            <AdvancedShape color="#ff9f1c" />
+            <AdvancedShape color="var(--color-accent-tertiary)" />
           </Canvas>
         </div>
         <motion.div 
@@ -23,10 +24,10 @@ export default function Solutions() {
           transition={{ duration: 1 }}
           className="relative z-10 flex flex-col items-center justify-center h-full"
         >
-          <h1 className="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-cyan-400 to-pink-500">
+          <h1 className="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-blue-500 to-purple-600">
             Our Solutions
           </h1>
-          <p className="mt-4 text-lg text-gray-300">
+          <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
             Innovative solutions designed to transform your business.
           </p>
         </motion.div>
@@ -43,16 +44,16 @@ export default function Solutions() {
                 whileHover={{ y: -5 }}
                 className="relative p-8 rounded-2xl overflow-hidden group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-white/10 transition-colors duration-300 group-hover:from-purple-500/20 group-hover:to-cyan-500/20" />
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-blue-500/10 border border-white/10 transition-colors duration-300 group-hover:from-violet-500/20 group-hover:to-blue-500/20" />
                 <div className="relative">
-                  <div className="w-12 h-12 mb-6 rounded-lg bg-gradient-to-br from-purple-500/20 to-cyan-500/20 flex items-center justify-center">
+                  <div className="w-12 h-12 mb-6 rounded-lg bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center">
                     {solution.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-pink-500 transition-all duration-300">
+                  <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-violet-500 group-hover:to-blue-500 transition-all duration-300">
                     {solution.title}
                   </h3>
-                  <p className="text-gray-300">{solution.description}</p>
-                  <div className="mt-6 flex items-center text-purple-400 group-hover:text-purple-300">
+                  <p className="text-[var(--color-text-secondary)]">{solution.description}</p>
+                  <div className="mt-6 flex items-center text-violet-400 group-hover:text-violet-300">
                     <span>Learn more</span>
                     <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -72,21 +73,21 @@ const solutions = [
   {
     title: "Cloud Infrastructure",
     description: "Enterprise-grade cloud solutions built for scale and security.",
-    icon: <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+    icon: <svg className="w-6 h-6 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
   },
   {
     title: "AI & Machine Learning",
     description: "Intelligent solutions that transform your data into actionable insights.",
-    icon: <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+    icon: <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
   },
   {
     title: "DevOps & Automation",
     description: "Streamline your development and deployment processes.",
-    icon: <svg className="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+    icon: <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
   },
   {
     title: "Cybersecurity",
     description: "Protect your business with advanced security solutions.",
-    icon: <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+    icon: <svg className="w-6 h-6 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
   }
 ];
